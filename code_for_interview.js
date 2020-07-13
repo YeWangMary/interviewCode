@@ -1,3 +1,5 @@
+
+
 /*
 author: Ye Wang
 date: 7/12/2020
@@ -48,7 +50,7 @@ class Cards {
      */
     drawCards(){
         return this.cards.pop();
-     }
+    }
 }
 
 
@@ -61,20 +63,13 @@ description:
 3. draw four cards with values between 1 to 9
 4. calculate the four values with operations of +, -, *, /. each value can only be used once
 and every value has to be used. determine if we can get 24 from the four values.
-
 my solution for this problem:
 This problem can be represented as a sequence of XyXyXyX, X is for the four values and y is for the operations.
 we want to try all the possible sequences for this XyXyXyX to know if we can get a result of 24.
 The algorithm is, firstly, generate all the permutations for the four values(represented by X), and then
 for each permutation, we apply all the combinations of the operations at the three positions represented by y
 in XyXyXyX. This will give us all the possible ways to calculate.
-This algorithm is exhaustive because that:
-if we try all the combinations of 4 operations at the three positions for one permutation of 4 values, we will
-get all the possible ways to calculate the 4 values in a sequential order. But with just one permutation,
-we can only calculate them in that sequence and never get some other combinations of the values.
-for example: with  8, 5, 3, 1, we can never get the result of, (8 + 3) * 5 + 1.
-So we need to get all the permutations of the four values, and then for each of them, apply all the possible combinations
-of operations to it, this will give us all the possible ways to calculate the four values with the four operations.
+
  */
 
 
@@ -170,9 +165,6 @@ output: no return value.
 description: This function is similar to the one for permutation above. But not as permutation,
              we don't need a set to check for repetition. At each step, we loop through the four operations,
              apply it to the preResult and current value, then proceed with the updated preResult.
-
-
-
  */
 const combinationHelper= (arr, steps, preResult, booleanResult) => {
     if (steps===4){               //base case: if we have calculated 3 steps, we compare the preResult to 24 and store the result in an array.
@@ -210,4 +202,5 @@ const combinationHelper= (arr, steps, preResult, booleanResult) => {
     }
 }
 
-operatorCombinations([6,4,9,6]);
+operatorCombinations([3,5,1,8]);
+
