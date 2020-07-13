@@ -89,8 +89,8 @@ four values within 1 to 9 inclusively in the array and then return the array.
 const draw4Cards = function(cards){
     const values = [];
     while(values.length < 4){
-        const card = cards.drawCards();
-        if(card.charAt(1)<='9'&&card.charAt(1)>='1'){
+        let card = cards.drawCards();
+        if(card.charAt(1) <= '9' && card.charAt(1) >= '1'){
             values.push(parseInt(card.charAt(1)));
         }
     }
@@ -155,6 +155,7 @@ description: this function will call the combinationHelper function. The combina
 const operatorCombinations = (arr) => {
     let result = [];
     combinationHelper(arr,1,arr[0],result);
+    console.log(result);
     return result;
 }
 
@@ -209,37 +210,4 @@ const combinationHelper= (arr, steps, preResult, booleanResult) => {
     }
 }
 
-/*
-the function that plays the game automatically.
-There are 24 permutations for 4 values, and 4 * 4 * 4 possible combinations of three operators,
-so the total number of possible results is 24 * 64 = 1536.
- */
-const point24 = () => {
-    //initialize a new Cards object.
-    const cards = new Cards();
-
-    //Shuffle the cards to a random order.
-    cards.shuffleCards();
-
-
-    //draw four cards from the cards.
-    const cardValues = draw4Cards(cards);
-
-    //generate all the permutations of the 4 card values.
-    const cardsPermutations = generatePermutation(cardValues);
-
-    let result = false;                         //initialize the final result.
-    for(let per of cardsPermutations){
-        let calculateResult = operatorCombinations(per);  //for each permutation, get all the result of different combinations of operations.
-        for(let res of calculateResult){                  //check if there is a true in all the result.
-
-            if(res){
-                result = res;
-            }
-        }
-    }
-    console.log(cardValues, result);
-}
-
-
-point24();
+operatorCombinations([6,4,9,6]);
